@@ -5,51 +5,124 @@
 def order(values: list = None) -> list:
     if values is None:
         # TODO: demander les valeurs ici
-        pass
+        values = []
+        while len(values) < 10:
+            values.append(input("Entrez une valeur "))
 
-    return []
+    sorted_list = sorted(values)
+
+    print(sorted_list)
+
+    return sorted_list
 
 
 def anagrams(words: list = None) -> bool:
-    if words is None:
+    if words is None :
         # TODO: demander les mots ici
-        pass
+        words = []
+        while len(words) < 2:
+            words.append(input("Veuillez entrer un mot"))
 
-    return False
+    return sorted(words[0]) == sorted(words[1])
+
+
 
 
 def contains_doubles(items: list) -> bool:
-    return False
+
+    return len(set(items)) != len(items)
+
+
+
+
 
 
 def best_grades(student_grades: dict) -> dict:
     # TODO: Retourner un dictionnaire contenant le nom de l'étudiant ayant la meilleure moyenne ainsi que sa moyenne
-    return {}
+
+    best_student = dict()
+
+    for key, value in student_grades.items():
+        avg = sum(value) / len(value)
+
+        if len(best_student) == 0 or list(best_student.values())[0] < avg :
+            best_student = {key: avg}
+
+    return best_student
+
+
+
+
+
+
+
 
 
 def frequence(sentence: str) -> dict:
     # TODO: Afficher les lettres les plus fréquentes
     #       Retourner le tableau de lettres
+    frequency = dict()
 
-    return {}
+    for letter in sentence:
+        frequency[letter] = sentence.count(letter)
+
+
+
+    sorted_keys = sorted(frequency, key=frequency.__getitem__, reverse=True)
+
+    for key in sorted_keys :
+        if frequency[key] > 5 :
+            print(f"Le caractere {key} revient {frequency[key]} fois.")
+
+
+
+
+
+
+    return frequency
 
 
 def get_recipes():
     # TODO: Demander le nom d'une recette, puis ses ingredients et enregistrer dans une structure de données
-    pass
+    dictionnaire = dict()
+
+
+    recette = input("Entrez le nom dune recette : ")
+
+    ingredients = input("Entez les ingredients , separes par une virgule : ").split(",")
+
+    dictionnaire[recette] = ingredients
+
+
+    return dictionnaire
+
+
 
 
 def print_recipe(ingredients) -> None:
+
     # TODO: Demander le nom d'une recette, puis l'afficher si elle existe
-    pass
+    name = input("Entrez le nom dune recette : ")
+
+    if name in ingredients :
+        print(ingredients[name])
+    else:
+        print("La recette n'existe pas!")
+
+
+
+
+
+
+
 
 
 def main() -> None:
     print(f"On essaie d'ordonner les valeurs...")
-    order()
+    #order()
 
     print(f"On vérifie les anagrammes...")
-    anagrams()
+    #print(anagrams())
 
     my_list = [3, 3, 5, 6, 1, 1]
     print(f"Ma liste contient-elle des doublons? {contains_doubles(my_list)}")
